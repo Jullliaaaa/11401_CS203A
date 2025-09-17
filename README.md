@@ -29,5 +29,5 @@ It will be used to:
 - Submit programming assignments  
 - Track project progress with commits
 ## Links
-- [Course Repository](https://github.com/your-username/11401_CS203A) 
-- [Personal Website](https://your-username.github.io/)  
+- [Course Repository](https://github.com/Jullliaaaa/11401_CS203A) 
+- [Personal Website](https://Jullliaaaa.github.io/)  
