@@ -4,7 +4,7 @@ This assignment focuses on the design and observation of hash functions using C/
 Students are expected to implement and analyze the behavior of hash functions, 
 evaluate their efficiency, and understand their applications in computer science.
 
-Developer: Miao-Xuan Xiao
+Developer: Miao-Xuan Xiao  
 Email: s1113353@mail.yzu.edu.tw
 
 ## Development Environment
@@ -14,16 +14,35 @@ Windows 11, Visual Studio Code, Git and MinGW-w64 GCC/G++ 15.2.0
 ### Integer Keys 
 - Formula / pseudocode:
   ```text
-  [Your implementation here]
+  //Jenkins-like integer hash
+  function jenkinsIntHash(key, m):
+    x = key
+    x = x + (x shifted left by 11)
+    x = x XOR (x shifted right by 13)
+    x = x + (x shifted left by 6)
+    x = x XOR (x shifted right by 10)
+    x = x + (x shifted left by 15)
+    return x modulo m
   ```
-- Rationale: [Explain your design choices and how they minimize collisions.]
+- Rationale:
+  Jenkins-like hash mixes the bits of the integer key using shifts and XOR operations. 
+  This ensures that even similar or sequential keys produce very different hash values, 
+  which reduces clustering and collisions in the hash table.
 
 ### Non-integer Keys
 - Formula / pseudocode:
   ```text
-  [Your implementation here]
-  ```
-- Rationale: [Explain your approach and its effectiveness for non-integer keys.]
+  //SDBM string hash
+  function sdbmStringHash(str, m):
+      hash = 0
+      for each character c in str:
+          hash = c + (hash shifted left by 6) + (hash shifted left by 16) - hash
+      return hash modulo m```
+- Rationale:
+  SDBM string hash mixes the bits of all characters using shifts and addition/subtraction.
+  This creates a more uniform distribution of hash values for different strings,
+  reducing collisions even when strings share common prefixes or patterns.
+
 
 ## Experimental Setup
 - Table sizes tested (m): 10, 11, 37
@@ -82,78 +101,27 @@ Windows 11, Visual Studio Code, Git and MinGW-w64 GCC/G++ 15.2.0
   ```
 
 ### Result Snapshot
-- Example output for integers:
-  ```
-  === Hash Function Observation (C Version) ===
+- Example output for integers:  
+  - C
+  ![Integer Hash Result](images/C_int10_Jen.png)
+  ![Integer Hash Result](images/C_int11_Jen.png)
+  ![Integer Hash Result](images/C_int37_Jen.png)
+  - C++
+  ![Integer Hash Result](images/Cpp_int10_Jen.png)
+  ![Integer Hash Result](images/Cpp_int11_Jen.png)
+  ![Integer Hash Result](images/Cpp_int37_Jen.png)
+  
 
-  === Table Size m = 10 ===
-  Key     Index
-  -----------------
-  21      1
-  22      2
-  ...
-
-  === Table Size m = 11 ===
-  Key     Index
-  -----------------
-  21      10
-  22      0
-  ...
-
-  === Table Size m = 37 ===
-  Key     Index
-  -----------------
-  21      21
-  22      22
-  ...
-
-  === Hash Function Observation (C++ Version) ===
-
-  === Table Size m = 10 ===
-  Key     Index
-  -----------------
-  21      1
-  22      2
-  ...
-
-  === Table Size m = 11 ===
-  Key     Index
-  -----------------
-  21      10
-  22      0
-  ...
-
-  === Table Size m = 37 ===
-  Key     Index
-  -----------------
-  21      21
-  22      22
-  ...
-  ```
-
-- Example output for strings:
-  ```
-  === String Hash (m = 10) ===
-  Key     Index
-  -----------------
-  cat     0
-  dog     0
-  ...
-
-  === String Hash (m = 11) ===
-  Key     Index
-  -----------------
-  cat     0
-  dog     0
-  ...
-
-  === String Hash (m = 37) ===
-  Key     Index
-  -----------------
-  cat     0
-  dog     0
-  ...
-  ```
+- Example output for strings:  
+  - C
+  ![String Hash Result](images/C_str10_SDBM.png)
+  ![String Hash Result](images/C_str11_SDBM.png)
+  ![String Hash Result](images/C_str37_SDBM.png)
+  - C++
+  ![String Hash Result](images/Cpp_str10_SDBM.png)
+  ![String Hash Result](images/Cpp_str11_SDBM.png)
+  ![String Hash Result](images/Cpp_str37_SDBM.png)
+  
 
 - Observations: Outputs align with the analysis, showing better distribution with prime table sizes.
 - Example output for integers:
