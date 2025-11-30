@@ -11,7 +11,7 @@ Email: s1113353@mail.yzu.edu.tw
 Windows 11, Visual Studio Code, Git and MinGW-w64 GCC/G++ 15.2.0
 
 ## My Hash Function
-You can commit the code with each hash function uncommented individually and observe the differences in outputs. This helps illustrate how the choice of hash function and table size affects key distribution and collisions.
+The hash functions are implemented in `hash_fn.c` (C) and `hash_fn.cpp` (C++). You can commit the code with each hash function uncommented individually and observe the differences in outputs. This helps illustrate how the choice of hash function and table size affects key distribution and collisions.
 ### Integer Keys 
 - Three Methods: Division, Multiplication, Jenkins-like
 - Formula / pseudocode:
