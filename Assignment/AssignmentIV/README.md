@@ -193,3 +193,4 @@ The hash functions are implemented in `hash_fn.c` (C) and `hash_fn.cpp` (C++). Y
 - https://stackoverflow.com/questions/7666509/hash-function-for-string  
 - https://hackmd.io/@Zero871015/DSNote-20  
 - https://gist.github.com/badboy/6267743
+- https://byvoid.com/zht/blog/string-hash-compare/
